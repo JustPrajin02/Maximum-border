@@ -1,0 +1,155 @@
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        if (sc.hasNextInt()) {
+            int t = sc.nextInt(); 
+            while (t-- > 0) {
+                int n = sc.nextInt(); 
+                int m = sc.nextInt(); 
+                String[] grid = new String[n];
+                for (int i = 0; i < n; i++) {
+                    grid[i] = sc.next();
+                }
+                System.out.println(getMaxBorder(n, m, grid));
+            }
+        }
+        sc.close();
+    }
+
+    private static int getMaxBorder(int n, int m, String[] grid) {
+        int maxBorder = 0;
+
+        for (int i = 0; i < n; i++) {
+            int currentConsecutive = 0;
+            for (int j = 0; j < m; j++) {
+                if (grid[i].charAt(j) == '#') {
+                    currentConsecutive++;
+                    maxBorder = Math.max(maxBorder, currentConsecutive);
+                } else {
+                    currentConsecutive = 0;
+                }
+            }
+        }
+
+        for (int j = 0; j < m; j++) {
+            int currentConsecutive = 0;
+            for (int i = 0; i < n; i++) {
+                if (grid[i].charAt(j) == '#') {
+                    currentConsecutive++;
+                    maxBorder = Math.max(maxBorder, currentConsecutive);
+                } else {
+                    currentConsecutive = 0;
+                }
+            }
+        }
+
+        return maxBorder;
+    }
+}
+Output:
+Sample Input
+10
+2 15
+.....####......
+.....#.........
+7 9
+...###...
+...###...
+..#......
+.####....
+..#......
+...#####.
+.........
+18 11
+.#########.
+########...
+.........#.
+####.......
+.....#####.
+.....##....
+....#####..
+.....####..
+..###......
+......#....
+....#####..
+...####....
+##.........
+#####......
+....#####..
+....##.....
+.#######...
+.#.........
+1 15
+.....######....
+5 11
+..#####....
+.#######...
+......#....
+....#####..
+...#####...
+8 13
+.....######..
+......##.....
+########.....
+...#.........
+.............
+#######......
+..######.....
+####.........
+7 5
+.....
+..##.
+###..
+..##.
+.....
+..#..
+.#...
+14 2
+..
+#.
+..
+#.
+..
+#.
+..
+..
+#.
+..
+..
+..
+#.
+..
+7 15
+.###########...
+##############.
+...####........
+...##########..
+.......#.......
+.....#########.
+.#######.......
+12 6
+#####.
+###...
+#.....
+##....
+###...
+......
+.##...
+..##..
+...#..
+..#...
+#####.
+####..
+Sample Output
+4
+5
+9
+6
+7
+8
+3
+1
+14
+5
